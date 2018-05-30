@@ -37,7 +37,7 @@ threestagetwostage=function(t, state, parms){
     dUl = (gammaM*Um)-((L*deltaLl/(1+taus*deltaLs*Us+taum*deltaLm*Um+taul*deltaLl*Ul))+FU+MUl)*Ul   #large urchin dynamics
     #^^growth from small urchins, loss via type II func resp, fishing & natural mortality)
     
-    dLs = (b*(deltaLss*Us+deltaLms*Um)/(1+taus*deltaLss*Us+taums*deltaLms*Um)- gammaL - MLs)*Ls
+    dLs = phi + (b*(deltaLss*Us+deltaLms*Um)/(1+taus*deltaLss*Us+taums*deltaLms*Um)- gammaL - MLs)*Ls
     #^^conversion of small lobsters to urchins via type II func resp, loss via growth & natural mortality)
     
     dL = (gammaL*Ls) + (b*(deltaLs*Us+deltaLm*Um+deltaLl*Ul)/(1+taus*deltaLs*Us+taum*deltaLm*Um+taul*deltaLl*Ul)-ML-FL)*L  #spiny lobster dynamics     
@@ -74,14 +74,14 @@ deltaLms= 0.075   #rate of medium urchin consumption by small lobsters
 MUl=0.1     #natural mortality of large urchins  (from Hilb.&Gut. stock assess.)
 MUm= 0.1    #natural mortality of med. urchins  (from Hilb.&Gut. stock assess.)
 MUs=0.1    #natural mortality of small urchins (from Hilb.&Gut. stock assess.)
-FU=0.0     # fishing mortality of urchins   ( Hilb.&Gut. stock assess. set F~0.001, but Loo disagrees)
+FU=0.25     # fishing mortality of urchins   ( Hilb.&Gut. stock assess. set F~0.001, but Loo disagrees)
 taus= 1e-08      #handling time of small urchins by lobsters
 taum= 1e-07    #handling time of med urchins by lobsters
 taul=1e-06    #handling time of large urchins by lobsters
 taums= 1e-06 #handling time of medium urchins by small lobsters
-#phi= 1     #recruitment of small lobsters each time step   (removed for now)
+phi= 0.1     #recruitment of small lobsters each time step  
 ML= 0.175      # natural mortality of lobsters: 0.17 from stock assessment
-FL= 0.0     # fishing mortality of lobsters: Fmsy=0.25 from stock assessment
+FL= 0.8     # fishing mortality of lobsters: Fmsy=0.25 from stock assessment
 MLs = 0.35   #natural mortality of small lobsters (2x that of large lobsters) 0.35 [baseline]
 
 parms=c(r=r, Ka=Ka, Kul=Kul, sigma=sigma,deltaUs=deltaUs, deltaUm=deltaUm, 
