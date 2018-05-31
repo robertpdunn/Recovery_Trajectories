@@ -83,6 +83,9 @@ tail(out2,7)
 #now stop fishing for second species
 newerstate<-c(A=out2$A[200],Us=out2$Us[200],Um=out2$Um[200],Ul=out2$Ul[200], L=out2$L[200])
 FL=0.00         #close lobster fishery
+deltaUs= 0.1   #create NCEs (when running NCE sims)
+deltaUm= 0.1
+
 parms=c(r=r, Ka=Ka, Kul=Kul, phiU=phiU, phiL=phiL, sigma=sigma,deltaUs=deltaUs, deltaUm=deltaUm, 
         deltaUl=deltaUl,aM=aM, aL=aL, b=b, gammaS=gammaS, gammaM=gammaM, 
         deltaLs=deltaLs, deltaLm=deltaLm,deltaLl=deltaLl, MUl=MUl, MUm=MUm,
@@ -99,13 +102,13 @@ y$CommDens<-y$Us+y$Um+y$Ul+y$L
 y$FishedDens<-y$Ul+y$L
 
 maxfished<-max(y$FishedDens)  # 
-fishedvol<-(maxfished-y[400,8])/y[400,8] #0.122
+fishedvol<-(maxfished-y[400,8])/y[400,8] #0.122   With NCE: 0.156
 maxcomm<-max(y$CommDens) #
-commvol<-(maxcomm - y[400,7])/y[400,7] #0.4308
+commvol<-(maxcomm - y[400,7])/y[400,7] #0.4308   with NCE: 0.6718
 
 #RETURN TIMES###
 #Calculate manually by looking at y dataframe, add up duration of first and 2nd transient periods until within 10% of equilibria
-#Fished: 7   Full Community: 5
+#Fished: 7   with NCE:7   ,    Full Community: 5  with nCE:5 
 
 ################################
 ###Overharvested initial state##

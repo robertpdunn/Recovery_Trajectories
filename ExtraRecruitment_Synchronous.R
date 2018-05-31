@@ -74,6 +74,8 @@ tail(out,7)
 newstate<-c(A=out$A[200],Us=out$Us[200],Um=out$Um[200],Ul=out$Ul[200],Ls = out$Ls[200], L=out$L[200])
 FU=0.00         #close urchin fishery
 FL=0.0    #close lobster fishery
+deltaUs= 0.1   #create NCEs
+deltaUm= 0.1   
 
 parms=c(r=r, Ka=Ka, Kul=Kul, phiU=phiU, phiL=phiL, sigma=sigma,deltaUs=deltaUs, deltaUm=deltaUm, 
         deltaUl=deltaUl,aM=aM, aL=aL, b=b, gammaS=gammaS, gammaM=gammaM, 
@@ -97,19 +99,18 @@ y$time<-seq(1,200)
 y$CommDens<-y$Us+y$Um+y$Ul+y$L
 y$FishedDens<-y$Ul+y$L
 
-maxfished<-max(y$FishedDens)  # 15.537
-fishedvol<-(maxfished-y[200,8])/y[200,8] #0.119
+maxfished<-max(y$FishedDens)  # 15.537   #with NCE: 13.521
+fishedvol<-(maxfished-y[200,8])/y[200,8] #0.119   #with NCE: 0.147
 maxcomm<-max(y$CommDens) #
-commvol<-(maxcomm - y[200,7])/y[200,7] #0.418
+commvol<-(maxcomm - y[200,7])/y[200,7] #0.418    #with NCE: 0.657
 
 #RETURN TIMES###
 #Calculate manually by looking at y dataframe, add up duration of first and 2nd transient periods until within 10% of equilibria
-#Fished: 7yr   Full Community: 5yr
+#Fished: 7yr with NCE:7  Full Community: 5yr   with NCE: 5
 
 ################################
 ###Overharvested initial state##
 ################################
-
 state<-c(A=2685.046 , Us=4.886611, Um=0.3219738, Ul=0.04064373, L=13.84371)   #Unexploited equilibrium
 r= 10                #growth rate of kelp
 Ka=3000        #carrying capacity of kelp
@@ -155,6 +156,8 @@ tail(out,7)
 newstate<-c(A=out$A[200],Us=out$Us[200],Um=out$Um[200],Ul=out$Ul[200],Ls = out$Ls[200], L=out$L[200])
 FU=0.00         #close urchin fishery
 FL=0.0    #close lobster fishery
+#deltaUs= 0.1   #create NCEs
+#deltaUm= 0.1   
 
 parms=c(r=r, Ka=Ka, Kul=Kul, phiU=phiU, phiL=phiL, sigma=sigma,deltaUs=deltaUs, deltaUm=deltaUm, 
         deltaUl=deltaUl,aM=aM, aL=aL, b=b, gammaS=gammaS, gammaM=gammaM, 
