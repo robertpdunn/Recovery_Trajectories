@@ -99,6 +99,14 @@ maxtot<-max(tot)   #calculate maximum of avg relative biomass
 totvol<-(maxtot-tot[200,1])/tot[200,1]   #calculate volatility of avg relative biomass
 print(totvol)  ##volatility=0.1603
 
+y$FishedDens<-y$Ul+y$L
+
+maxfished<-max(y$FishedDens)  # 15.537   #with NCE: 13.521
+fishedvol<-(maxfished-y[200,7])/y[200,7] 
+print(fishedvol)
+maxkelp<-max(y$A)
+kelpvol<-(maxkelp-y[200,2])/y[200,2]
+print(kelpvol)
 #RETURN TIME###
 #Calculate manually by looking at tot dataframe, add up duration of transient periods until within 10% of equilibria
 #6 yrs
@@ -151,7 +159,7 @@ tail(out,7)
 
 #Now, close the first fishery, use harvested equilibrium population values from above
 newstate<-c(A=out$A[200],Us=out$Us[200],Um=out$Um[200],Ul=out$Ul[200],Ls = out$Ls[200], L=out$L[200])
-FU=0.00       #close urchin fishery
+Fk=0.0        #close kelp harvest
 
 parms=c(r=r, Ka=Ka, Fk=Fk, Kul=Kul, sigma=sigma,deltaUs=deltaUs, deltaUm=deltaUm, 
         deltaUl=deltaUl,aM=aM, aL=aL, b=b, gammaS=gammaS, gammaM=gammaM, 
@@ -162,7 +170,7 @@ tail(out2,7)
 
 #now stop fishing for both other species
 newerstate<-c(A=out2$A[200],Us=out2$Us[200],Um=out2$Um[200],Ul=out2$Ul[200], L=out2$L[200])
-Fk=0.0        #close kelp harvest
+FU=0.00       #close urchin fishery
 FL=0.0        #close lobster fishery
 
 parms=c(r=r, Ka=Ka, Fk=Fk, Kul=Kul, sigma=sigma,deltaUs=deltaUs, deltaUm=deltaUm, 
@@ -182,6 +190,15 @@ tot<-(kelp+urch+lob)/3   #take average of relative biomass across 3 harvested gr
 maxtot<-max(tot)   #calculate maximum of avg relative biomass
 totvol<-(maxtot-tot[400])/tot[400]   #calculate volatility of avg relative biomass
 print(totvol)  ##Basal First: 0.1581    Prey first: 0.172     Pred First: 0.1215
+
+y$FishedDens<-y$Ul+y$L
+maxfished<-max(y$FishedDens)  
+fishedvol<-(maxfished-y[400,7])/y[400,7] 
+print(fishedvol)
+maxkelp<-max(y$A)
+kelpvol<-(maxkelp-y[400,2])/y[400,2]
+print(kelpvol)
+
 
 #RETURN TIME###
 #Calculate manually by looking at tot dataframe, add up duration of transient periods until within 10% of equilibria
@@ -239,7 +256,7 @@ tail(out,7)
 
 #Now, close the first fishery, use harvested equilibrium population values from above
 newstate<-c(A=out$A[200],Us=out$Us[200],Um=out$Um[200],Ul=out$Ul[200],Ls = out$Ls[200], L=out$L[200])
-Fk=0.00       #close kelp harvest
+FU=0.0        #close urchin harvest
 
 parms=c(r=r, Ka=Ka, Fk=Fk, Kul=Kul, sigma=sigma,deltaUs=deltaUs, deltaUm=deltaUm, 
         deltaUl=deltaUl,aM=aM, aL=aL, b=b, gammaS=gammaS, gammaM=gammaM, 
@@ -250,7 +267,7 @@ tail(out2,7)
 
 #now stop fishing for next species
 newerstate<-c(A=out2$A[200],Us=out2$Us[200],Um=out2$Um[200],Ul=out2$Ul[200], L=out2$L[200])
-FU=0.0        #close urchin harvest
+Fk=0.00       #close kelp harvest
 
 parms=c(r=r, Ka=Ka, Fk=Fk, Kul=Kul, sigma=sigma,deltaUs=deltaUs, deltaUm=deltaUm, 
         deltaUl=deltaUl,aM=aM, aL=aL, b=b, gammaS=gammaS, gammaM=gammaM, 
@@ -281,6 +298,14 @@ maxtot<-max(tot)   #calculate maximum of avg relative biomass
 totvol<-(maxtot-tot[600])/tot[600]   #calculate volatility of avg relative biomass
 print(totvol) #Basal-Pred-Prey:0.1287 Basal-Prey-Pred:0.1706, Prey-Basal-Pred:0.1706 Prey-Pred-Basal:0.1648, Pred-Prey-Basal:0.1215 Pred-Basal-Prey:0.1215 
 plot(tot, type="l")
+
+y$FishedDens<-y$Ul+y$L
+maxfished<-max(y$FishedDens)  
+fishedvol<-(maxfished-y[600,7])/y[600,7] 
+print(fishedvol)
+maxkelp<-max(y$A)
+kelpvol<-(maxkelp-y[600,2])/y[600,2]
+print(kelpvol)
 
 #RETURN TIME###
 #Calculate manually by looking at tot dataframe, add up duration of transient periods until within 10% of equilibria
